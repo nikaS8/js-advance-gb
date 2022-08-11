@@ -7,8 +7,10 @@ class ShoppingCart {
 	}
 
 	addItem(item) {}
-	deleteItem(item){}
+	removeItem(item){}
+	changeItem(){}
 	showInfo(){}
+	render(){}
 }
 
 class ShoppingCartItem {
@@ -18,6 +20,6 @@ class ShoppingCartItem {
         this.price = product.price;
         this.img = product.img;
 	}
-
+	render(){}
 	showInfo(){}
 }
