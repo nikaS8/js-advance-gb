@@ -10,7 +10,7 @@ const app = new Vue({
         imgCatalog: 'https://via.placeholder.com/200x150',
         userSearch: '',
         show: false
-    },
+    },  
     methods: {
         filter(){
             const regexp = new RegExp(this.userSearch, 'i');
@@ -40,12 +40,15 @@ const app = new Vue({
            .then(data => {
                for(let el of data){
                    this.products.push(el);
-               }
-           });
-        this.getJson(`getProducts.json`)
+                   this.filtered.push(el);
+                }
+            });
+            this.getJson(`getProducts.json`)
             .then(data => {
                 for(let el of data){
                     this.products.push(el);
+                    this.filtered.push(el);
+                    this.cart.push(el);
                 }
             });
     }

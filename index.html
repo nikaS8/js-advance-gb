@@ -11,25 +11,38 @@
     <header>
         <div class="logo">E-shop</div>
         <div class="cart">
-            <form action="#" class="search-form">
+            <form action="#" class="search-form" @submit.prevent="filter">
                 <input type="text" class="search-field" v-model="userSearch">
-                <button class="btn-search" type="submit" @click="filter()">
+                <button class="btn-search" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
             <button class="btn-cart" type="button" v-on:click="show=!show">Корзина</button>
-            <div v-if="show" class="cart-block" v-for="product of cart" :key="product.product_name">
+            <!-- <div v-if="show" class="cart-block" v-for="product of cart" :key="product.product_name">
                 <div class="desc">    
                     <h3>{{product.product_name}}</h3>
                     <p>{{product.price}} $</p>
                     <p>{{product.quantity}} шт</p>
+                </div>
+            </div> -->
+            <div v-if="show" class="cart-block">
+                <p v-if="cart.lenght === 0">Cart is empty!</p>
+                <div class="cart-item" v-for="product of cart" :key="product.product_name">
+                    <div class="product-bio">
+                        <!-- <img :src="imgCatalog" alt="photo"> -->
+                        <div class="product-desc">    
+                            <h3>{{product.product_name}}</h3>
+                            <p>{{product.price}} $</p>
+                            <p>{{product.quantity}} шт</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     <main>
         <div class="products">
-            <div class="product-item" v-for="product of products" :key="product.id_product">
+            <div class="product-item" v-for="product of filtered" :key="product.id_product">
                 <img :src="imgCatalog" alt="Some img">
                 <div class="desc">
                     <h3>{{product.product_name}}</h3>
